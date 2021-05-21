@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProductoxStock" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13cf3530-78c2-4faa-ab00-33c71103165d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idCliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select v.idVenta, concat(vn.nombreVendedor,' ',vn.apellidoVendedor) as Vendedor
+,concat(c.nombreCliente,' ',c.apellidoCliente)  as Cliente,v.fechaVenta,v.totalVenta
+from Venta as v
+inner join Vendedor as vn
+on v.idVendedor = vn.idVendedor 
+inner join Cliente as c
+on v.idCliente = c.idCliente 
+where v.idCliente = $P{idCliente}]]>
+	</queryString>
+	<field name="idVenta" class="java.lang.Integer"/>
+	<field name="Vendedor" class="java.lang.String"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="fechaVenta" class="java.lang.String"/>
+	<field name="totalVenta" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="207" y="10" width="166" height="20" uuid="2338e42e-1d19-41a3-9fb8-5d1a13281e12"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Compras por Cliente]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="357" y="0" width="46" height="20" uuid="93970fa4-9e7f-4be6-a583-726bedc82550"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="416" y="0" width="156" height="20" forecolor="#000066" uuid="ee2a8dbb-9bf8-4c15-abde-20a2e4e3cd20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f4604a1e-fcdf-4b43-a115-4af6f5155929"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="145" height="20" uuid="5e6c36f3-4bc0-4ec7-a527-d7a66f600a22"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vendedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="0" width="100" height="20" uuid="37119580-25bb-4094-b850-bba236c0255c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="100" height="20" uuid="566d4953-703d-435b-bdf0-17ef3d2d776e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Facturado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="12ea434f-1d14-4e9e-89df-a555a192e6c2"/>
+				<textFieldExpression><![CDATA[$F{idVenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="145" height="20" uuid="31bc637e-1624-4b18-9dcd-fbef3aa92154"/>
+				<textFieldExpression><![CDATA[$F{Vendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="100" height="20" uuid="39bc000e-9da3-41f5-8714-438a0de5ccc9"/>
+				<textFieldExpression><![CDATA[$F{fechaVenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" uuid="34156bbf-34d3-4e2b-a657-8d6c9b9afe28"/>
+				<textFieldExpression><![CDATA[$F{totalVenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

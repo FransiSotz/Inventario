@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProductoxStock" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13cf3530-78c2-4faa-ab00-33c71103165d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="stockProducto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.idProducto, c.nombreCategoria, p.nombreProducto, p.stockProducto
+from Producto as p
+inner join Categoria as c
+on p.idCategoria = c.idCategoria 
+where stockProducto > $P{stockProducto}]]>
+	</queryString>
+	<field name="idProducto" class="java.lang.Integer"/>
+	<field name="nombreCategoria" class="java.lang.String"/>
+	<field name="nombreProducto" class="java.lang.String"/>
+	<field name="stockProducto" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="187" y="11" width="212" height="20" uuid="2338e42e-1d19-41a3-9fb8-5d1a13281e12"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Productos Con Stock Alto]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="472" y="0" width="100" height="20" uuid="3c6e7a35-9d00-48da-bf20-f1b7e2d54023"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="0" width="150" height="20" uuid="d363e535-8a96-43ea-a4b3-7ee5464d60a2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="0" width="138" height="20" uuid="305c27f7-7451-4caa-b105-0f06e2f4c0dd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="0" width="100" height="20" uuid="cd560cf4-3023-430c-aded-7ca6da69b634"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" forecolor="#660000" uuid="1cc96026-6dc4-4bba-840a-554953889376"/>
+				<textFieldExpression><![CDATA[$F{stockProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="2" width="150" height="20" uuid="f42c2ed8-02dd-43ad-9e07-bb97dac5d679"/>
+				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="2" width="138" height="20" uuid="ef122769-8318-4e56-bcf0-69a486e480f5"/>
+				<textFieldExpression><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="27" y="2" width="100" height="20" uuid="022218b2-8d5f-492e-9593-239024523623"/>
+				<textFieldExpression><![CDATA[$F{idProducto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
